@@ -53,6 +53,34 @@ Dict::Add('ES CR', 'Spanish', 'Español, Castellano', array(
 	'Class:Incident/Attribute:status+' => 'Estatus',
 	'Class:Incident/Attribute:status/Value:new' => 'Nuevo',
 	'Class:Incident/Attribute:status/Value:new+' => 'Nuevo',
+
+	'Class:Incident/Attribute:status/Value:analysis' => 'Análizando incidente',
+	'Class:Incident/Attribute:status/Value:analysis+' => 'Análizando incidente',
+
+	'Class:Incident/Attribute:status/Value:final_cfg' => 'Configuración Final',
+	'Class:Incident/Attribute:status/Value:final_cfg+' => 'Configuración Final',
+
+	'Class:Incident/Attribute:status/Value:req_for_delivery' => 'Solicitar envio a deposito',
+	'Class:Incident/Attribute:status/Value:req_for_delivery+' => 'Solicitar envio a deposito',
+
+	'Class:Incident/Attribute:status/Value:on_the_way_to_storage' => 'En Camino al Almacén',
+	'Class:Incident/Attribute:status/Value:on_the_way_to_storage+' => 'En Camino al Almacén',
+
+	'Class:Incident/Attribute:status/Value:in_external_storage' => 'En Almacén Externo',
+	'Class:Incident/Attribute:status/Value:in_external_storage+' => 'En Almacén Externo',
+
+	'Class:Incident/Attribute:status/Value:in_local_storage' => 'En Almacén Local',
+	'Class:Incident/Attribute:status/Value:in_local_storage+' => 'En Almacén Local',
+
+	'Class:Incident/Attribute:status/Value:inspecting' => 'Inspeccionando',
+	'Class:Incident/Attribute:status/Value:inspecting+' => 'Inspeccionando',
+
+	'Class:Incident/Attribute:status/Value:on_the_way_to_customer' => 'En Camino al Cliente',
+	'Class:Incident/Attribute:status/Value:on_the_way_to_customer+' => 'En Camino al Cliente',
+
+	'Class:Incident/Attribute:status/Value:no_solution' => 'Sin Solución',
+	'Class:Incident/Attribute:status/Value:no_solution+' => 'Sin Solución',
+
 	'Class:Incident/Attribute:status/Value:escalated_tto' => 'Escalado por Tiempo de Asignación',
 	'Class:Incident/Attribute:status/Value:escalated_tto+' => 'Escalado por Tiempo de Asignación',
 	'Class:Incident/Attribute:status/Value:assigned' => 'Asignado',
@@ -221,6 +249,34 @@ Dict::Add('ES CR', 'Spanish', 'Español, Castellano', array(
 	'Class:Incident/Stimulus:ev_close+' => 'Cerrar este Ticket',
 	'Class:Incident/Stimulus:ev_reopen' => 'Reabrir',
 	'Class:Incident/Stimulus:ev_reopen+' => 'Reabrir',
+
+	'Class:Incident/Stimulus:ev_to_analysis' => 'Mover a Análisis',
+	'Class:Incident/Stimulus:ev_to_analysis+' => 'Mover el incidente al estado de Análisis',
+
+	'Class:Incident/Stimulus:ev_to_inspecting' => 'Mover a Inspección',
+	'Class:Incident/Stimulus:ev_to_inspecting+' => 'Mover el incidente al estado de Inspección',
+
+	'Class:Incident/Stimulus:ev_to_customer' => 'Mover a Cliente',
+	'Class:Incident/Stimulus:ev_to_customer+' => 'Mover el incidente al estado de En Camino al Cliente',
+
+	'Class:Incident/Stimulus:ev_to_final_cfg' => 'Mover a Configuración Final',
+	'Class:Incident/Stimulus:ev_to_final_cfg+' => 'Mover el incidente al estado de Configuración Final',
+
+	'Class:Incident/Stimulus:ev_to_delivery_request' => 'Mover a Solicitud de Entrega',
+	'Class:Incident/Stimulus:ev_to_delivery_request+' => 'Mover el incidente al estado de Solicitud de Entrega',
+
+	'Class:Incident/Stimulus:ev_to_storage_transit' => 'Mover a Tránsito al Almacén',
+	'Class:Incident/Stimulus:ev_to_storage_transit+' => 'Mover el incidente al estado de En Camino al Almacén',
+
+	'Class:Incident/Stimulus:ev_to_external_storage' => 'Mover a Almacén Externo',
+	'Class:Incident/Stimulus:ev_to_external_storage+' => 'Mover el incidente al estado de En Almacén Externo',
+
+	'Class:Incident/Stimulus:ev_to_local_storage' => 'Mover a Almacén Local',
+	'Class:Incident/Stimulus:ev_to_local_storage+' => 'Mover el incidente al estado de En Almacén Local',
+
+	'Class:Incident/Stimulus:ev_to_no_solution' => 'Mover a Sin Solución',
+	'Class:Incident/Stimulus:ev_to_no_solution+' => 'Mover el incidente al estado de Sin Solución',
+
 	'Class:Incident/Error:CannotAssignParentIncidentIdToSelf' => 'No puede asignarse el incidente Padre a si mismo',
 	'Class:Incident/Method:ResolveChildTickets' => 'Resolver tickets hijos',
 	'Class:Incident/Method:ResolveChildTickets+' => 'Cascadear la solución a los tickets hijos (ev_autoresolve), y alinear las siguientes características: servicio, equipo, agente, información de solución',

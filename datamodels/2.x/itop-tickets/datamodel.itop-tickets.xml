@@ -1098,12 +1098,17 @@
                   <title>Brick:Portal:OngoingRequests:Tab:OnGoing</title>
                   <!-- Optional. A string or dictionary entry to display under the page title for this tab -->
                   <!-- <description>Brick:Portal:OngoingRequests:Tab:OnGoing+</description> -->
-                  <condition><![CDATA[SELECT Ticket AS T WHERE operational_status NOT IN ('closed', 'resolved')]]></condition>
+                  <condition><![CDATA[SELECT Ticket AS T WHERE operational_status NOT IN ('closed', 'resolved', 'no_solution')]]></condition>
                 </group>
                 <group id="resolved">
                   <rank>2</rank>
                   <title>Brick:Portal:OngoingRequests:Tab:Resolved</title>
                   <condition><![CDATA[SELECT Ticket AS T WHERE operational_status = 'resolved']]></condition>
+                </group>
+                <group id="no_solution">
+                  <rank>3</rank>
+                  <title>Brick:Portal:OngoingRequests:Tab:NoSolution</title>
+                  <condition><![CDATA[SELECT Ticket AS T WHERE operational_status = 'no_solution']]></condition>
                 </group>
               </groups>
             </tabs>

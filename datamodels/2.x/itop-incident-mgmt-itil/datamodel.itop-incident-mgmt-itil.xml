@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.3">
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.2">
   <classes>
     <class id="Incident" _delta="define">
       <parent>Ticket</parent>
@@ -58,6 +58,42 @@
             </value>
             <value id="assigned">
               <code>assigned</code>
+              <rank>20</rank>
+              <style>
+                <main_color>$ibo-lifecycle-neutral-state-primary-color</main_color>
+                <complementary_color>$ibo-lifecycle-neutral-state-secondary-color</complementary_color>
+                <decoration_classes/>
+              </style>
+            </value>
+            <value id="analysis">
+              <code>analysis</code>
+              <rank>30</rank>
+              <style>
+                <main_color>$ibo-lifecycle-neutral-state-primary-color</main_color>
+                <complementary_color>$ibo-lifecycle-neutral-state-secondary-color</complementary_color>
+                <decoration_classes/>
+              </style>
+            </value>
+            <value id="final_cfg">
+              <code>final_cfg</code>
+              <rank>40</rank>
+              <style>
+                <main_color>$ibo-lifecycle-neutral-state-primary-color</main_color>
+                <complementary_color>$ibo-lifecycle-neutral-state-secondary-color</complementary_color>
+                <decoration_classes/>
+              </style>
+            </value>
+            <value id="req_for_delivery">
+              <code>req_for_delivery</code>
+              <rank>50</rank>
+              <style>
+                <main_color>$ibo-lifecycle-neutral-state-primary-color</main_color>
+                <complementary_color>$ibo-lifecycle-neutral-state-secondary-color</complementary_color>
+                <decoration_classes/>
+              </style>
+            </value>
+            <value id="on_the_way_to_storage">
+              <code>on_the_way_to_storage</code>
               <rank>60</rank>
               <style>
                 <main_color>$ibo-lifecycle-neutral-state-primary-color</main_color>
@@ -65,9 +101,54 @@
                 <decoration_classes/>
               </style>
             </value>
+            <value id="in_external_storage">
+              <code>in_external_storage</code>
+              <rank>70</rank>
+              <style>
+                <main_color>$ibo-lifecycle-neutral-state-primary-color</main_color>
+                <complementary_color>$ibo-lifecycle-neutral-state-secondary-color</complementary_color>
+                <decoration_classes/>
+              </style>
+            </value>
+            <value id="in_local_storage">
+              <code>in_local_storage</code>
+              <rank>80</rank>
+              <style>
+                <main_color>$ibo-lifecycle-neutral-state-primary-color</main_color>
+                <complementary_color>$ibo-lifecycle-neutral-state-secondary-color</complementary_color>
+                <decoration_classes/>
+              </style>
+            </value>
+            <value id="inspecting">
+              <code>inspecting</code>
+              <rank>90</rank>
+              <style>
+                <main_color>$ibo-lifecycle-neutral-state-primary-color</main_color>
+                <complementary_color>$ibo-lifecycle-neutral-state-secondary-color</complementary_color>
+                <decoration_classes/>
+              </style>
+            </value>
+            <value id="on_the_way_to_customer">
+              <code>on_the_way_to_customer</code>
+              <rank>100</rank>
+              <style>
+                <main_color>$ibo-lifecycle-neutral-state-primary-color</main_color>
+                <complementary_color>$ibo-lifecycle-neutral-state-secondary-color</complementary_color>
+                <decoration_classes/>
+              </style>
+            </value>
+            <value id="no_solution">
+              <code>no_solution</code>
+              <rank>110</rank>
+              <style>
+                <main_color>$ibo-lifecycle-failure-state-primary-color</main_color>
+                <complementary_color>$ibo-lifecycle-failure-state-secondary-color</complementary_color>
+                <decoration_classes>fas fa-fire</decoration_classes>
+              </style>
+            </value>
             <value id="pending">
               <code>pending</code>
-              <rank>70</rank>
+              <rank>120</rank>
               <style>
                 <main_color>$ibo-lifecycle-waiting-state-primary-color</main_color>
                 <complementary_color>$ibo-lifecycle-waiting-state-secondary-color</complementary_color>
@@ -76,7 +157,7 @@
             </value>
             <value id="escalated_tto">
               <code>escalated_tto</code>
-              <rank>80</rank>
+              <rank>130</rank>
               <style>
                 <main_color>$ibo-lifecycle-failure-state-primary-color</main_color>
                 <complementary_color>$ibo-lifecycle-failure-state-secondary-color</complementary_color>
@@ -85,7 +166,7 @@
             </value>
             <value id="escalated_ttr">
               <code>escalated_ttr</code>
-              <rank>90</rank>
+              <rank>140</rank>
               <style>
                 <main_color>$ibo-lifecycle-failure-state-primary-color</main_color>
                 <complementary_color>$ibo-lifecycle-failure-state-secondary-color</complementary_color>
@@ -94,7 +175,7 @@
             </value>
             <value id="resolved">
               <code>resolved</code>
-              <rank>100</rank>
+              <rank>150</rank>
               <style>
                 <main_color>$ibo-lifecycle-success-state-primary-color</main_color>
                 <complementary_color>$ibo-lifecycle-success-state-secondary-color</complementary_color>
@@ -212,7 +293,7 @@
 						SELECT Service AS s JOIN lnkCustomerContractToService AS l1
 						ON l1.service_id=s.id JOIN CustomerContract AS cc ON l1.customercontract_id=cc.id
 						WHERE cc.org_id = :this->org_id AND s.status != 'obsolete'
-						]]></filter>
+						]]>          </filter>
           <dependencies>
             <attribute id="org_id"/>
           </dependencies>
@@ -298,7 +379,7 @@
                 <persistent>false</persistent>
               </highlight>
               <actions>
-							</actions>
+              </actions>
             </threshold>
             <threshold id="100">
               <highlight>
@@ -320,9 +401,21 @@
           <always_load_in_tables>true</always_load_in_tables>
           <states>
             <state id="new"/>
-            <state id="escalated_tto"/>
             <state id="assigned"/>
+            <state id="analysis"/>
+            <state id="final_cfg"/>
+            <state id="req_for_delivery"/>
+            <state id="on_the_way_to_storage"/>
+            <state id="in_external_storage"/>
+            <state id="in_local_storage"/>
+            <state id="inspecting"/>
+            <state id="on_the_way_to_customer"/>
+            <state id="no_solution"/>
+            <state id="pending"/>
+            <state id="escalated_tto"/>
             <state id="escalated_ttr"/>
+            <state id="resolved"/>
+            <state id="closed"/>
           </states>
           <working_time/>
           <goal>ResponseTicketTTR</goal>
@@ -333,7 +426,7 @@
                 <persistent>false</persistent>
               </highlight>
               <actions>
-							</actions>
+              </actions>
             </threshold>
             <threshold id="100">
               <highlight>
@@ -404,6 +497,9 @@
             <value id="bug fixed">
               <code>bug fixed</code>
             </value>
+            <value id="no_solution">
+              <code>no_solution</code>
+            </value>
           </values>
           <sql>resolution_code</sql>
           <default_value>assistance</default_value>
@@ -422,7 +518,7 @@
           <is_null_allowed>true</is_null_allowed>
         </field>
         <field id="parent_incident_id" xsi:type="AttributeExternalKey">
-          <filter><![CDATA[SELECT Incident WHERE id != :this->id AND status NOT IN ('resolved','closed')]]></filter>
+          <filter><![CDATA[SELECT Incident WHERE id != :this->id AND status NOT IN ('resolved','closed','no_solution')]]></filter>
           <sql>parent_incident_id</sql>
           <target_class>Incident</target_class>
           <is_null_allowed>true</is_null_allowed>
@@ -526,6 +622,17 @@
           <stimulus id="ev_resolve" xsi:type="StimulusUserAction"/>
           <stimulus id="ev_close" xsi:type="StimulusUserAction"/>
           <stimulus id="ev_reopen" xsi:type="StimulusUserAction"/>
+
+          <stimulus id="ev_to_analysis" xsi:type="StimulusUserAction"/>
+          <stimulus id="ev_to_inspecting" xsi:type="StimulusUserAction"/>
+          <stimulus id="ev_to_customer" xsi:type="StimulusUserAction"/>
+          <stimulus id="ev_to_final_cfg" xsi:type="StimulusUserAction"/>
+          <stimulus id="ev_to_delivery_request" xsi:type="StimulusUserAction"/>
+          <stimulus id="ev_to_storage_transit" xsi:type="StimulusUserAction"/>
+          <stimulus id="ev_to_external_storage" xsi:type="StimulusUserAction"/>
+          <stimulus id="ev_to_local_storage" xsi:type="StimulusUserAction"/>
+          <stimulus id="ev_to_no_solution" xsi:type="StimulusUserAction"/>
+
         </stimuli>
         <states>
           <state id="new">
@@ -648,6 +755,52 @@
                   </action>
                 </actions>
               </transition>
+
+              <transition id="ev_to_analysis">
+                <target>analysis</target>
+                <actions/>
+              </transition>
+
+              <transition id="ev_to_inspecting">
+                <target>inspecting</target>
+                <actions/>
+              </transition>
+
+              <transition id="ev_to_customer">
+                <target>on_the_way_to_customer</target>
+                <actions/>
+              </transition>
+
+              <transition id="ev_to_final_cfg">
+                <target>final_cfg</target>
+                <actions/>
+              </transition>
+
+              <transition id="ev_to_delivery_request">
+                <target>req_for_delivery</target>
+                <actions/>
+              </transition>
+
+              <transition id="ev_to_storage_transit">
+                <target>on_the_way_to_storage</target>
+                <actions/>
+              </transition>
+
+              <transition id="ev_to_external_storage">
+                <target>in_external_storage</target>
+                <actions/>
+              </transition>
+
+              <transition id="ev_to_local_storage">
+                <target>in_local_storage</target>
+                <actions/>
+              </transition>
+
+              <transition id="ev_to_no_solution">
+                <target>no_solution</target>
+                <actions/>
+              </transition>
+
             </transitions>
           </state>
           <state id="escalated_tto">
@@ -778,6 +931,10 @@
                   </action>
                 </actions>
               </transition>
+              <transition id="ev_to_analysis">
+                <target>analysis</target>
+                <actions/>
+              </transition>
             </transitions>
           </state>
           <state id="escalated_ttr">
@@ -874,7 +1031,7 @@
               <transition id="ev_assign">
                 <target>assigned</target>
                 <actions>
-								</actions>
+                </actions>
               </transition>
               <transition id="ev_autoresolve">
                 <target>resolved</target>
@@ -999,7 +1156,7 @@
               <transition id="ev_reopen">
                 <target>assigned</target>
                 <actions>
-								</actions>
+                </actions>
               </transition>
               <transition id="ev_autoresolve">
                 <target>resolved</target>
@@ -1073,6 +1230,248 @@
             </flags>
             <transitions/>
           </state>
+
+          <!-- ...existing code... -->
+          <state id="analysis">
+            <inherit_flags_from>assigned</inherit_flags_from>
+            <flags/>
+            <transitions>
+              <transition id="ev_to_delivery_request">
+                <target>req_for_delivery</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_final_cfg">
+                <target>final_cfg</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_storage_transit">
+                <target>on_the_way_to_storage</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_customer">
+                <target>on_the_way_to_customer</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_no_solution">
+                <target>no_solution</target>
+                <actions/>
+              </transition>
+            </transitions>
+          </state>
+          <state id="final_cfg">
+            <inherit_flags_from>assigned</inherit_flags_from>
+            <flags/>
+            <transitions>
+              <transition id="ev_to_analysis">
+                <target>analysis</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_inspecting">
+                <target>inspecting</target>
+                <actions/>
+              </transition>
+              <transition id="ev_resolve">
+                <target>resolved</target>
+                <actions/>
+              </transition>
+            </transitions>
+          </state>
+          <state id="req_for_delivery">
+            <inherit_flags_from>assigned</inherit_flags_from>
+            <flags/>
+            <transitions>
+              <transition id="ev_to_storage_transit">
+                <target>on_the_way_to_storage</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_inspecting">
+                <target>inspecting</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_final_cfg">
+                <target>final_cfg</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_analysis">
+                <target>analysis</target>
+                <actions/>
+              </transition>
+            </transitions>
+          </state>
+          <state id="on_the_way_to_storage">
+            <inherit_flags_from>assigned</inherit_flags_from>
+            <flags/>
+            <transitions>
+              <transition id="ev_to_external_storage">
+                <target>in_external_storage</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_local_storage">
+                <target>in_local_storage</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_inspecting">
+                <target>inspecting</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_analysis">
+                <target>analysis</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_final_cfg">
+                <target>final_cfg</target>
+                <actions/>
+              </transition>
+            </transitions>
+          </state>
+          <state id="in_external_storage">
+            <inherit_flags_from>assigned</inherit_flags_from>
+            <flags/>
+            <transitions>
+              <transition id="ev_to_local_storage">
+                <target>in_local_storage</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_inspecting">
+                <target>inspecting</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_final_cfg">
+                <target>final_cfg</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_analysis">
+                <target>analysis</target>
+                <actions/>
+              </transition>
+            </transitions>
+          </state>
+          <state id="in_local_storage">
+            <inherit_flags_from>assigned</inherit_flags_from>
+            <flags/>
+            <transitions>
+              <transition id="ev_to_final_cfg">
+                <target>final_cfg</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_analysis">
+                <target>analysis</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_inspecting">
+                <target>inspecting</target>
+                <actions/>
+              </transition>
+            </transitions>
+          </state>
+          <state id="inspecting">
+            <inherit_flags_from>assigned</inherit_flags_from>
+            <flags/>
+            <transitions>
+              <transition id="ev_to_final_cfg">
+                <target>final_cfg</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_analysis">
+                <target>analysis</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_no_solution">
+                <target>no_solution</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_customer">
+                <target>on_the_way_to_customer</target>
+                <actions/>
+              </transition>
+            </transitions>
+          </state>
+          <state id="on_the_way_to_customer">
+            <inherit_flags_from>assigned</inherit_flags_from>
+            <flags/>
+            <transitions>
+              <transition id="ev_to_final_cfg">
+                <target>final_cfg</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_analysis">
+                <target>analysis</target>
+                <actions/>
+              </transition>
+              <transition id="ev_to_inspecting">
+                <target>inspecting</target>
+                <actions/>
+              </transition>
+            </transitions>
+          </state>
+          <state id="no_solution">
+            <highlight>
+              <code>closed</code>
+            </highlight>
+            <inherit_flags_from>assigned</inherit_flags_from>
+            <flags>
+              <attribute id="public_log">
+                <read_only/>
+              </attribute>
+              <attribute id="functionalcis_list">
+                <read_only/>
+              </attribute>
+              <attribute id="contacts_list">
+                <read_only/>
+              </attribute>
+              <attribute id="private_log">
+                <read_only/>
+              </attribute>
+              <attribute id="service_id">
+                <read_only/>
+              </attribute>
+              <attribute id="servicesubcategory_id">
+                <read_only/>
+              </attribute>
+              <attribute id="close_date">
+                <read_only/>
+              </attribute>
+              <attribute id="resolution_code">
+                <read_only/>
+              </attribute>
+              <attribute id="solution">
+                <read_only/>
+              </attribute>
+              <attribute id="pending_reason">
+                <read_only/>
+              </attribute>
+              <attribute id="user_satisfaction">
+                <read_only/>
+                <must_prompt/>
+              </attribute>
+              <attribute id="user_comment">
+                <read_only/>
+                <must_prompt/>
+              </attribute>
+            </flags>
+            <transitions>
+              <transition id="ev_to_no_solution">
+                <target>no_solution</target>
+                <actions>
+                  <action>
+                    <verb>SetCurrentDate</verb>
+                    <params>
+                      <param xsi:type="attcode">close_date</param>
+                    </params>
+                  </action>
+                  <action>
+                    <verb>SetAttribute</verb>
+                    <params>
+                      <param xsi:type="attcode">resolution_code</param>
+                      <param xsi:type="string">no_solution</param>
+                    </params>
+                  </action>
+                </actions>
+              </transition>
+            </transitions>
+          </state>
+          <!-- ...existing code... -->
+
         </states>
       </lifecycle>
       <methods>
@@ -1085,7 +1484,7 @@
         {
                 return 'I-%06d';
         }
-        ]]></code>
+        ]]>          </code>
         </method>
         <method id="DoCheckToWrite">
           <static>false</static>
@@ -1193,7 +1592,7 @@
           <access>public</access>
           <type>LifecycleAction</type>
           <arguments>
-					</arguments>
+          </arguments>
           <code><![CDATA[	public function ResolveChildTickets()
 	{
         static $aRequests = array(); // prevent infinite recursion
@@ -1725,7 +2124,7 @@
             <dashlets>
               <dashlet id="3" xsi:type="DashletGroupByTable">
                 <title>UI-IncidentManagementOverview-OpenIncidentByStatus</title>
-                <query>SELECT Incident WHERE status NOT IN ('closed','rejected')</query>
+                <query>SELECT Incident WHERE status NOT IN ('closed','rejected','no_solution')</query>
                 <group_by>status</group_by>
                 <style>table</style>
               </dashlet>
@@ -1736,7 +2135,7 @@
             <dashlets>
               <dashlet id="4" xsi:type="DashletGroupByTable">
                 <title>UI-IncidentManagementOverview-OpenIncidentByAgent</title>
-                <query>SELECT Incident WHERE status NOT IN ('closed','rejected')</query>
+                <query>SELECT Incident WHERE status NOT IN ('closed','rejected','no_solution')</query>
                 <group_by>agent_id</group_by>
                 <style>table</style>
               </dashlet>
@@ -1747,7 +2146,7 @@
             <dashlets>
               <dashlet id="5" xsi:type="DashletGroupByTable">
                 <title>UI-IncidentManagementOverview-OpenIncidentByCustomer</title>
-                <query>SELECT Incident WHERE status NOT IN ('closed','rejected')</query>
+                <query>SELECT Incident WHERE status NOT IN ('closed','rejected','no_solution')</query>
                 <group_by>org_id</group_by>
                 <style>table</style>
               </dashlet>
@@ -1769,11 +2168,12 @@
     <menu id="Incident:Shortcuts" xsi:type="TemplateMenuNode" _delta="define">
       <rank>3</rank>
       <parent>IncidentManagement</parent>
+      <template_file/>
     </menu>
     <menu id="Incident:MyIncidents" xsi:type="OQLMenuNode" _delta="define">
       <rank>0</rank>
       <parent>Incident:Shortcuts</parent>
-      <oql><![CDATA[SELECT Incident WHERE agent_id = :current_contact_id AND status NOT IN ("closed","resolved")]]></oql>
+      <oql><![CDATA[SELECT Incident WHERE agent_id = :current_contact_id AND status NOT IN ("closed","resolved","no_solution")]]></oql>
       <do_search/>
       <auto_reload>fast</auto_reload>
     </menu>
@@ -1787,7 +2187,7 @@
     <menu id="Incident:OpenIncidents" xsi:type="OQLMenuNode" _delta="define">
       <rank>2</rank>
       <parent>Incident:Shortcuts</parent>
-      <oql><![CDATA[SELECT Incident WHERE status NOT IN ("closed")]]></oql>
+      <oql><![CDATA[SELECT Incident WHERE status NOT IN ("closed","no_solution")]]></oql>
       <do_search>1</do_search>
       <auto_reload>fast</auto_reload>
     </menu>
@@ -1854,12 +2254,12 @@
 										FROM FunctionalCI AS FCI
 												 JOIN lnkFunctionalCIToTicket AS L ON L.functionalci_id = FCI.id
 												 JOIN Incident AS I ON L.ticket_id = I.id
-										WHERE (I.status NOT IN ('closed', 'resolved'))
+										WHERE (I.status NOT IN ('closed', 'resolved', 'no_solution'))
 										  AND (L.impact_code != 'not_impacted')
 										  AND (I.id != :this->id)
-										]]></oql>
+										]]>                  </oql>
                   <dict>Tickets:Related:OpenIncidents</dict>
-                  <icon>itop-incident-mgmt-itil/images/incident-red.svg</icon>
+                  <icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
                   <default>yes</default>
                 </item>
               </items>
@@ -1876,12 +2276,12 @@
 										FROM FunctionalCI AS FCI
 												 JOIN lnkFunctionalCIToTicket AS L ON L.functionalci_id = FCI.id
 												 JOIN Incident AS I ON L.ticket_id = I.id
-										WHERE (I.status NOT IN ('closed', 'resolved'))
+										WHERE (I.status NOT IN ('closed', 'resolved', 'no_solution'))
 										  AND (L.impact_code != 'not_impacted')
 										  AND (I.id != :this->id)
-										]]></oql>
+										]]>                  </oql>
                   <dict>Tickets:Related:OpenIncidents</dict>
-                  <icon>itop-incident-mgmt-itil/images/incident-red.svg</icon>
+                  <icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
                   <default>yes</default>
                 </item>
               </items>
@@ -1898,12 +2298,12 @@
 										FROM FunctionalCI AS FCI
 												 JOIN lnkFunctionalCIToTicket AS L ON L.functionalci_id = FCI.id
 												 JOIN Incident AS I ON L.ticket_id = I.id
-										WHERE (I.status NOT IN ('closed', 'resolved'))
+										WHERE (I.status NOT IN ('closed', 'resolved', 'no_solution'))
 										  AND (L.impact_code != 'not_impacted')
 										  AND (I.id != :this->id)
-										]]></oql>
+										]]>                  </oql>
                   <dict>Tickets:Related:OpenIncidents</dict>
-                  <icon>itop-incident-mgmt-itil/images/incident-red.svg</icon>
+                  <icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
                   <default>yes</default>
                 </item>
               </items>
@@ -1924,11 +2324,11 @@
 										FROM FunctionalCI AS FCI
 												 JOIN lnkFunctionalCIToTicket AS L ON L.functionalci_id = FCI.id
 												 JOIN Incident AS I ON L.ticket_id = I.id
-										WHERE (I.status NOT IN ('closed', 'resolved'))
+										WHERE (I.status NOT IN ('closed', 'resolved', 'no_solution'))
 										  AND (L.impact_code != 'not_impacted')
-										]]></oql>
+										]]>                  </oql>
                   <dict>Tickets:Related:OpenIncidents</dict>
-                  <icon>itop-incident-mgmt-itil/images/incident-red.dvg</icon>
+                  <icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
                   <default>yes</default>
                 </item>
               </items>
@@ -1941,11 +2341,11 @@
 										FROM FunctionalCI AS FCI
 												 JOIN lnkFunctionalCIToTicket AS L ON L.functionalci_id = FCI.id
 												 JOIN Incident AS I ON L.ticket_id = I.id
-										WHERE (I.status NOT IN ('closed', 'resolved'))
+										WHERE (I.status NOT IN ('closed', 'resolved', 'no_solution'))
 										  AND (L.impact_code != 'not_impacted')
-										]]></oql>
+										]]>                  </oql>
                   <dict>Tickets:Related:OpenIncidents</dict>
-                  <icon>itop-incident-mgmt-itil/images/incident-red.svg</icon>
+                  <icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
                   <default>yes</default>
                 </item>
               </items>

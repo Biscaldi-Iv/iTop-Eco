@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.3">
+<itop_design version="3.2">
   <classes/>
   <user_rights>
     <groups>
@@ -258,6 +258,15 @@
               <action id="stimulus:ev_resolve">allow</action>
               <action id="stimulus:ev_close">allow</action>
               <action id="stimulus:ev_pending">allow</action>
+              <action id="stimulus:ev_to_analysis">allow</action>
+              <action id="stimulus:ev_to_inspecting">allow</action>
+              <action id="stimulus:ev_to_customer">allow</action>
+              <action id="stimulus:ev_to_final_cfg">allow</action>
+              <action id="stimulus:ev_to_delivery_request">allow</action>
+              <action id="stimulus:ev_to_storage_transit">allow</action>
+              <action id="stimulus:ev_to_external_storage">allow</action>
+              <action id="stimulus:ev_to_local_storage">allow</action>
+              <action id="stimulus:ev_to_no_solution">allow</action>
             </actions>
           </group>
           <group id="Change">
@@ -373,6 +382,15 @@
               <action id="stimulus:ev_resolve">allow</action>
               <action id="stimulus:ev_close">allow</action>
               <action id="stimulus:ev_pending">allow</action>
+              <action id="stimulus:ev_to_analysis">allow</action>
+              <action id="stimulus:ev_to_inspecting">allow</action>
+              <action id="stimulus:ev_to_customer">allow</action>
+              <action id="stimulus:ev_to_final_cfg">allow</action>
+              <action id="stimulus:ev_to_delivery_request">allow</action>
+              <action id="stimulus:ev_to_storage_transit">allow</action>
+              <action id="stimulus:ev_to_external_storage">allow</action>
+              <action id="stimulus:ev_to_local_storage">allow</action>
+              <action id="stimulus:ev_to_no_solution">allow</action>
             </actions>
           </group>
           <group id="UserRequest">
